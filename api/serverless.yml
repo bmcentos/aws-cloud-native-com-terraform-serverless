@@ -1,0 +1,27 @@
+#Cria API
+service: api
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  stage: dev
+  regison: us-east-1
+  environment:
+    #Essa variavel é definida com base no nome do recurso aws_ssm_parameter criado pelo terradorm
+    #Ira usar o SSM, com o custom.stage definido nas ultimas linhas
+    DYNAMODB_USERS: ${ssm:${self:custom.stage}-dynamodb-users-table}
+
+#Cria função Register
+functions:
+  register:
+  #Usará a Role definida no terraform para a função register
+  role: ${ssm:${self:custom.stage}-register-iam-role}
+    handler: register/handler.register
+    events:
+      - http:
+          path: users
+          method: get
+#Permite reaproveiramento do codigo para outros ambientes
+#Caso seja passado stage na linha de comando do deploy, utiliza o stage da linha de comando, se não, usa o do provider desse mesmo codigo: provider.stage
+custom:
+  stage: ${opt:stage, self:provider.stage}
