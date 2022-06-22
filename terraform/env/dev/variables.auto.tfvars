@@ -1,1 +1,2 @@
-envirmonment = "dev"
+environment = "dev"
+region = "us-east-1"

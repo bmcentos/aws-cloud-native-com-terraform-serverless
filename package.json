@@ -1,0 +1,22 @@
+{
+  "name": "lambda",
+  "version": "1.0.0",
+  "description": "``` https://www.udemy.com/course/aws-cloud-native-com-terraform-serverless-framework/ (Thales Minussi) ```",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/bmcentos/aws-cloud-native-com-terraform-serverless.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bmcentos/aws-cloud-native-com-terraform-serverless/issues"
+  },
+  "homepage": "https://github.com/bmcentos/aws-cloud-native-com-terraform-serverless#readme",
+  "dependencies": {
+    "nodemailer": "^6.7.5"
+  }
+}

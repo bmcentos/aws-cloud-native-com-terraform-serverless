@@ -1,30 +1,13 @@
 resource "aws_iam_policy" "login_policy" {
-  name = "${var.envirmonment}-login-policy"
+  name = "${var.environment}-login-policy"
 
-  policy = jsonencode({
-    Version = "2012-10-17"
-    Statement = [
-      {
-        Action = [
-          "dynamodb:Query",
-        ]
-        Effect   = "Allow"
-        Resource = "${aws_dynamodb_table.users.arn}/index/${var.envirmonment}-email-gsi}"
-      },
-      {
-          "Effect": "Allow",
-          "Action": [
-              "logs:CreateLogGroup",
-              "logs:CreateLogStream",
-              "logs:PutLogEvents"
-          ],
-          "Resource": "*"
-      }
-    
-    ]
+  #Utiliza o template definido em templates/dynamodb-policy.tpl, utilizando as variaveis definidas no arquivo
+  policy = templatefile("${path.module}/templates/dynamodb-policy.tpl", {
+    action = "dinamodb:Query",
+    resource = "${aws_dynamodb_table.users.arn}/index/${var.environment}-email-gsi"
   })
 
     tags = {
-    tag-key = "${var.envirmonment}-policy-login"
+    tag-key = "${var.environment}-policy-login"
   }
 }
