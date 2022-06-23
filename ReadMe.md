@@ -150,6 +150,11 @@ Tunning de memoria ram de função LAMBDA
 			secrets.* filter=git-crypt diff=git-crypt
 
 		Gerar chave simetrica para descriptação do arquivo
-		mkdir ~/.keys && git-crypt export-key ~/.keys/proj.key
+		mkdir ~/.keys && git-crypt export-key ~/.keys/proj.key	
+
+		#Após, é só enviar para o repositorio.
+
+		#Para descriptar o arquivo
+		git-crypt unlock ~/.keys/proj.key
 
 	
