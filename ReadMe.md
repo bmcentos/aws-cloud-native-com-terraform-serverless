@@ -139,4 +139,17 @@ Tunning de memoria ram de função LAMBDA
 	} 
 
 
+#Encriptando arquivos sensiveis antes de enviar para o github
+
+	- git-crypt
+		 sudo apt install git-crypt
+		 git-crypt init
+		 vi .gitattributes
+		 	secretfile filter=git-crypt diff=git-crypt
+			#Ira encriptar os arquivos que contem a palavra secrets.*, que possuem valores sensiveis
+			secrets.* filter=git-crypt diff=git-crypt
+
+		Gerar chave simetrica para descriptação do arquivo
+		mkdir ~/.keys && git-crypt export-key ~/.keys/proj.key
+
 	
